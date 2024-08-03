@@ -1,0 +1,314 @@
+<link
+  rel="stylesheet"
+  href="https://unpkg.com/@themesberg/flowbite@1.2.0/dist/flowbite.min.css"
+/>
+<link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.min.css"
+/>
+<style>
+  /* Static Section (.col-md-12) */
+  .col-md-12 {
+    height: 150px;
+    /* Set a fixed height for static behavior */
+    overflow: hidden;
+    /* Hide any content that overflows */
+  }
+
+  /* Scrollable Section (.drawing-board.col-md-12) */
+  .drawing-board.col-md-12 {
+    height: 500px;
+    /* Set a desired height for the scrollable area */
+    width: 1200px;
+    overflow-y: auto;
+    /* Enable vertical scrolling */
+    overflow-x: auto;
+  }
+</style>
+<div class="py-5">
+  <div class="w-full">
+    <div class="bg-white dark:bg-gray-800 shadow-md rounded-lg p-6">
+      <h3
+        class="text-xl font-semibold text-gray-800 dark:text-gray-200 mb-4"
+      ></h3>
+      <div class="overflow-x-auto">
+        <div class="border-b border-gray-200 dark:border-gray-700 mb-4">
+          <ul
+            class="flex flex-wrap -mb-px"
+            id="myTab"
+            data-tabs-toggle="#myTabContent"
+            role="tablist"
+          >
+            <li class="mr-2" role="presentation">
+              <button
+                class="inline-block text-gray-500 hover:text-gray-600 hover:border-gray-300 rounded-t-lg py-4 px-4 text-sm font-medium text-center border-transparent border-b-2 dark:text-gray-400 dark:hover:text-gray-300 active"
+                id="profile-tab"
+                data-tabs-target="#profile"
+                type="button"
+                role="tab"
+                aria-controls="profile"
+                aria-selected="true"
+              >
+                Archivo
+              </button>
+            </li>
+            <li class="mr-2" role="presentation">
+              <button
+                class="inline-block text-gray-500 hover:text-gray-600 hover:border-gray-300 rounded-t-lg py-4 px-4 text-sm font-medium text-center border-transparent border-b-2 dark:text-gray-400 dark:hover:text-gray-300"
+                id="dashboard-tab"
+                data-tabs-target="#dashboard"
+                type="button"
+                role="tab"
+                aria-controls="dashboard"
+                aria-selected="false"
+              >
+                Columnas
+              </button>
+            </li>
+            <li class="mr-2" role="presentation">
+              <button
+                class="inline-block text-gray-500 hover:text-gray-600 hover:border-gray-300 rounded-t-lg py-4 px-4 text-sm font-medium text-center border-transparent border-b-2 dark:text-gray-400 dark:hover:text-gray-300"
+                id="settings-tab"
+                data-tabs-target="#settings"
+                type="button"
+                role="tab"
+                aria-controls="settings"
+                aria-selected="false"
+              >
+                Vigas
+              </button>
+            </li>
+            <li role="presentation">
+              <button
+                class="inline-block text-gray-500 hover:text-gray-600 hover:border-gray-300 rounded-t-lg py-4 px-4 text-sm font-medium text-center border-transparent border-b-2 dark:text-gray-400 dark:hover:text-gray-300"
+                id="contacts-tab"
+                data-tabs-target="#contacts"
+                type="button"
+                role="tab"
+                aria-controls="contacts"
+                aria-selected="false"
+              >
+                Zapata
+              </button>
+            </li>
+            <li role="presentation">
+              <button
+                class="inline-block text-gray-500 hover:text-gray-600 hover:border-gray-300 rounded-t-lg py-4 px-4 text-sm font-medium text-center border-transparent border-b-2 dark:text-gray-400 dark:hover:text-gray-300"
+                id="losas-tab"
+                data-tabs-target="#losas"
+                type="button"
+                role="tab"
+                aria-controls="losas"
+                aria-selected="false"
+              >
+                Lozas
+              </button>
+            </li>
+          </ul>
+        </div>
+        <div id="myTabContent">
+          <div
+            class="bg-gray-50 p-4 rounded-lg dark:bg-gray-800"
+            id="profile"
+            role="tabpanel"
+            aria-labelledby="profile-tab"
+          >
+            <div class="grid grid-cols-4 gap-4">
+              <div>
+                <button class="btn create-new">
+                  <i class="ri-file-pdf-2-line"></i> Nuevo
+                </button>
+              </div>
+              <div>
+                <button class="btn save-img">
+                  <i class="ri-save-line"></i> Guardar
+                </button>
+              </div>
+              <div>
+                <button class="btn clear-canvas">
+                  <i class="ri-delete-bin-6-line"></i> Eliminar
+                </button>
+              </div>
+              <div>
+                <div class="">
+                  <label for="upload-pdf" class="btn upload-label">
+                    <i class="ri-chat-upload-line"></i> Cargar
+                  </label>
+                  <input
+                    type="file"
+                    id="upload-pdf"
+                    accept=".pdf"
+                    style="display: none"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            class="bg-gray-50 p-4 rounded-lg dark:bg-gray-800 hidden"
+            id="dashboard"
+            role="tabpanel"
+            aria-labelledby="dashboard-tab"
+          >
+            <div class="grid grid-cols-10 gap-10">
+              <div>
+                <button
+                  class="btn btn-sm tool"
+                  data-tool="rectangle"
+                  title="Rectángulo"
+                >
+                  <i class="ri-rectangle-line"></i>
+                </button>
+              </div>
+              <div>
+                <button
+                  class="btn btn-sm tool"
+                  data-tool="cuadrado"
+                  title="Cuadrado"
+                >
+                  <i class="ri-square-line"></i>
+                </button>
+              </div>
+              <div>
+                <button
+                  class="btn btn-sm tool"
+                  data-tool="circulo"
+                  title="Círculo"
+                >
+                  <i class="ri-circle-line"></i>
+                </button>
+              </div>
+              <div>
+                <button class="btn btn-sm tool" data-tool="te" title="T">
+                  <i class="ri-t-box-line"></i>
+                </button>
+              </div>
+              <div>
+                <button class="btn btn-sm tool" data-tool="ele" title="T">
+                  <i class="ri-ruler-2-line"></i>
+                </button>
+              </div>
+              <div>
+                <label for="npisos" class="text-center col-sm-6 col-form-label"
+                  >Cantidad de pisos</label
+                >
+              </div>
+              <div>
+                <input
+                  type="number"
+                  id="npisos"
+                  class="form-control"
+                  value="1"
+                  min="1"
+                />
+              </div>
+            </div>
+          </div> <!----->
+          <div
+            class="bg-gray-50 p-4 rounded-lg dark:bg-gray-800 hidden"
+            id="settings"
+            role="tabpanel"
+            aria-labelledby="settings-tab"
+          >
+            <div class="grid grid-cols-10 gap-10">
+              <div>
+                <button
+                  class="btn btn-sm tool"
+                  data-tool="cuadradovigas"
+                  title="Vigas"
+                >
+                  <i class="ri-t-box-line"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+          <div
+            class="bg-gray-50 p-4 rounded-lg dark:bg-gray-800 hidden"
+            id="contacts"
+            role="tabpanel"
+            aria-labelledby="contacts-tab"
+          >
+            <div class="flex items-center">
+              <!-- Contenedor flex para alinear elementos -->
+              <button
+                class="btn btn-sm tool"
+                data-tool="cuadradozapata"
+                title="CuadradoZapata"
+              >
+                <i class="ri-square-line"></i>
+              </button>
+              <div class="ml-12">
+                <!-- Incremento mayor de margen izquierdo -->
+                <div>
+                  <label
+                    for="Zpisos"
+                    class="text-center col-sm-6 col-form-label"
+                    >Cantidad de pisos </label
+                  >
+                </div>
+                <div>
+                  <input
+                    type="number"
+                    id="Zpisos"
+                    class="form-control"
+                    value="0"
+                    min="0"
+                  />
+                </div>
+              </div>
+              <div class="ml-12">
+                <!-- Incremento mayor de margen izquierdo de suelos  -->
+                <div>
+                  <label
+                    for="Zpisos"
+                    class="text-center col-sm-6 col-form-label"
+                    >Capacidad de suelos </label
+                  >
+                </div>
+                <div>
+                  <input
+                    type="number"
+                    id="Zsuelos"
+                    class="form-control"
+                    value="0"
+                    min="0"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div
+            class="bg-gray-50 p-4 rounded-lg dark:bg-gray-800 hidden"
+            id="losas"
+            role="tabpanel"
+            aria-labelledby="losas-tab"
+          >
+            <button>
+              <div>
+                <button
+                  class="btn btn-sm tool"
+                  data-tool="cuadradolosas"
+                  title="CuadradoLosas"
+                >
+                <i class="ri-ruler-2-fill"></i>
+                </button>
+              </div>
+            </button>
+
+          </div>
+        </div>
+        <section class="drawing-board col-md-12">
+          <canvas id="canvas" class="border"></canvas>
+        </section>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.10.377/pdf.min.js"></script>
+<script src="https://unpkg.com/@themesberg/flowbite@1.2.0/dist/flowbite.bundle.js"></script>
+<script src="{{ asset('js/adm_predim_view.js') }}"></script>
+<link href="./output.css" rel="stylesheet" />
+<script src="Predim.js"></script>
