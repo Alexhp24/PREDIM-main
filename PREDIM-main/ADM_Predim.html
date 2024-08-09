@@ -6,7 +6,21 @@
   rel="stylesheet"
   href="https://cdn.jsdelivr.net/npm/remixicon@4.3.0/fonts/remixicon.min.css"
 />
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+/>
+
 <style>
+  .option {
+    cursor: pointer;
+    padding: 10px;
+  }
+
+  .option.selected {
+    border: 2px solid #000; /* Estilo para indicar selección, ajusta según tus preferencias */
+  }
+
   /* Static Section (.col-md-12) */
   .col-md-12 {
     height: 150px;
@@ -203,7 +217,31 @@
                 />
               </div>
             </div>
-          </div> <!----->
+            <div>
+              <label
+                for="color_linea"
+                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                >Color</label
+              >
+              <input id="color_linea" type="color" value="#4A98F7" />
+            </div>
+            <div>
+              <label
+                for="range_linea"
+                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                >Default range</label
+              >
+              <input
+                id="range_linea"
+                type="range"
+                value="2"
+                min="0"
+                max="10"
+                class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-gray-700"
+              />
+            </div>
+          </div>
+          <!----->
           <div
             class="bg-gray-50 p-4 rounded-lg dark:bg-gray-800 hidden"
             id="settings"
@@ -243,8 +281,8 @@
                   <label
                     for="Zpisos"
                     class="text-center col-sm-6 col-form-label"
-                    >Cantidad de pisos </label
-                  >
+                    >Cantidad de pisos
+                  </label>
                 </div>
                 <div>
                   <input
@@ -262,8 +300,8 @@
                   <label
                     for="Zpisos"
                     class="text-center col-sm-6 col-form-label"
-                    >Capacidad de suelos </label
-                  >
+                    >Capacidad de suelos
+                  </label>
                 </div>
                 <div>
                   <input
@@ -277,7 +315,6 @@
               </div>
             </div>
           </div>
-
           <div
             class="bg-gray-50 p-4 rounded-lg dark:bg-gray-800 hidden"
             id="losas"
@@ -291,11 +328,10 @@
                   data-tool="cuadradolosas"
                   title="CuadradoLosas"
                 >
-                <i class="ri-ruler-2-fill"></i>
+                  <i class="ri-ruler-2-fill"></i>
                 </button>
               </div>
             </button>
-
           </div>
         </div>
         <section class="drawing-board col-md-12">

@@ -1,7 +1,8 @@
 document.addEventListener("DOMContentLoaded", function () {
   const canvas = document.getElementById("canvas");
   const ctx = canvas.getContext("2d");
-  const colorPicker = document.getElementById("color-picker");
+
+  const colorPicker = document.getElementById("#color-picker");
 
   const npisosInput = document.getElementById("npisos");
 
@@ -18,9 +19,18 @@ document.addEventListener("DOMContentLoaded", function () {
     console.log(ZsuelosInput);
   });
 
+  let brushWidth = 1;
+  document.getElementById("range_linea").addEventListener("input", (event) => {
+    brushWidth = event.target.value;
+    console.log(`Brush width set to: ${brushWidth}`);
+  });
 
+  let selectedColor = "#4A98F7";
+  document.getElementById("color_linea").addEventListener("input", (event) => {
+    selectedColor = event.target.value;
+    console.log(`color width set to: ${selectedColor}`);
+  });
 
-////
   // const ZsuelosInput = parseFloat(document.getElementById("Zsuelos").value);
 
   const uploadPDFInput = document.getElementById("upload-pdf");
@@ -29,9 +39,9 @@ document.addEventListener("DOMContentLoaded", function () {
     prevMouseY,
     isDrawing = false,
     snapshot;
-  let selectedTool = "rectangle",
-    brushWidth = 5,
-    selectedColor = "#000";
+  let selectedTool = "rectangle";
+  //   // brushWidth = 5,
+  //   // selectedColor = "#000";
   let fillColor = { checked: false };
   let shapes = []; // Array para almacenar todas las formas dibujadas
   let pdfSnapshot = null;
@@ -78,11 +88,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Clase base para herramientas de dibujo
   class Tool {
-    constructor(ctx, fillColor, selectedColor, brushWidth) {
+    constructor(ctx, fillColor) {
       this.ctx = ctx;
       this.fillColor = fillColor;
-      this.selectedColor = selectedColor;
-      this.brushWidth = brushWidth;
+      //this.selectedColor = selectedColor;
+      //this.brushWidth = brushWidth;
       this.drawing = false; // Añadido para controlar si se está dibujando
     }
 
@@ -113,15 +123,15 @@ document.addEventListener("DOMContentLoaded", function () {
         y: prevMouseY,
         width: e.offsetX - prevMouseX,
         height: e.offsetY - prevMouseY,
-        color: this.selectedColor,
-        brushWidth: this.brushWidth,
+        //color: this.selectedColor,
+        color: selectedColor,
+        brushWidth: brushWidth,
         fill: this.fillColor.checked,
         tool: selectedTool,
       };
       shapes.push(shape);
       redrawAllShapes();
     }
-
     calculateArea(shape) {
       // Función para calcular el área de la forma
       const scale = 0.02; // Escala 1:50
@@ -155,8 +165,10 @@ document.addEventListener("DOMContentLoaded", function () {
         y: prevMouseY,
         width: e.offsetX - prevMouseX,
         height: e.offsetY - prevMouseY,
-        color: this.selectedColor,
-        brushWidth: this.brushWidth,
+        //color: this.selectedColor,
+        color: selectedColor,
+        //brushWidth: this.brushWidth,
+        brushWidth: brushWidth,
         fill: this.fillColor.checked,
       };
       this.drawRect(shape);
@@ -302,7 +314,6 @@ document.addEventListener("DOMContentLoaded", function () {
       ctx.fillText(areaTextACuadrado, textX, textY + 20);
     }
   }
-
   //clase te y operacion
   class TeTool extends Tool {
     draw(e) {
@@ -348,7 +359,6 @@ document.addEventListener("DOMContentLoaded", function () {
       ctx.fillText(areaT, textX, textY + 20);
     }
   }
-
   //clase ele y operacion
   class EleTool extends Tool {
     draw(e) {
@@ -434,11 +444,9 @@ document.addEventListener("DOMContentLoaded", function () {
       const Luz = `L: ${luz} m`;
       const Base = `B= 30 cm`;
       const Altura = `h: ${(luz / 14).toFixed(2)} m`;
-
       const textY = square.y + square.height / 2;
       const textX =
         square.x + square.width / 2 - ctx.measureText(areaText).width / 2;
-
       this.drawText(square, areaText, textY);
       ctx.fillText(areaText, textX, textY + 5);
       ctx.fillText(Luz, textX, textY + 15);
@@ -538,8 +546,8 @@ document.addEventListener("DOMContentLoaded", function () {
       console.log(LusLosas);
 
       const AreaCuadradoLosas = `B = 30 cm`;
-   
-      const altura =`H ${(LusLosas / 25).toFixed(2) }`;
+
+      const altura = `H ${(LusLosas / 25).toFixed(2)}`;
 
       const textY = square.y + square.height / 2;
       const textX =
@@ -548,7 +556,7 @@ document.addEventListener("DOMContentLoaded", function () {
       this.drawText(square, areaText, textY);
       ctx.fillText(areaText, textX, textY + 5);
       ctx.fillText(AreaCuadradoLosas, textX, textY + 15);
-      ctx.fillText(altura,textX,textY + 25);
+      ctx.fillText(altura, textX, textY + 25);
     }
   }
 
@@ -621,6 +629,12 @@ document.addEventListener("DOMContentLoaded", function () {
       selectedTool = e.currentTarget.getAttribute("data-tool");
     });
   });
+
+  // colorPicker.addEventListener("change", () => {
+  //   // passing picked color value from color picker to last color btn background
+  //   colorPicker.parentElement.style.background = colorPicker.value;
+  //   colorPicker.parentElement.click();
+  // });
 
   // Slecciona,os el color
   // colorPicker.addEventListener("change", (e) => {
