@@ -1,6 +1,10 @@
-<link
+<!-- <link
   rel="stylesheet"
   href="https://unpkg.com/@themesberg/flowbite@1.2.0/dist/flowbite.min.css"
+/> -->
+<link
+  href="https://cdn.jsdelivr.net/npm/flowbite@2.5.1/dist/flowbite.min.css"
+  rel="stylesheet"
 />
 <link
   rel="stylesheet"
@@ -127,7 +131,7 @@
             role="tabpanel"
             aria-labelledby="profile-tab"
           >
-            <div class="grid grid-cols-4 gap-4">
+            <div class="grid grid-cols-5 gap-4">
               <div>
                 <button class="btn create-new">
                   <i class="ri-file-pdf-2-line"></i> Nuevo
@@ -155,6 +159,16 @@
                     style="display: none"
                   />
                 </div>
+              </div>
+              <div>
+                <button
+                  data-modal-target="static-modal"
+                  data-modal-toggle="static-modal"
+                  class="block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                  type="button"
+                >
+                  Reportes
+                </button>
               </div>
             </div>
           </div>
@@ -223,13 +237,13 @@
                 class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
                 >Color</label
               >
-              <input id="color_linea" type="color" value="#4A98F7" />
+              <input id="color_linea" type="color" value="#23D738" />
             </div>
             <div>
               <label
                 for="range_linea"
                 class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-                >Default range</label
+                >Grosor</label
               >
               <input
                 id="range_linea"
@@ -342,9 +356,277 @@
   </div>
 </div>
 
+<!-- Main modal -->
+<div
+  id="static-modal"
+  data-modal-backdrop="static"
+  tabindex="-1"
+  aria-hidden="true"
+  class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full"
+>
+  <div class="relative p-4 w-full max-w-2xl max-h-full">
+    <!-- Modal content -->
+    <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
+      <!-- Modal header -->
+      <div
+        class="flex items-center justify-between p-4 md:p-5 border-b rounded-t dark:border-gray-600"
+      >
+        <h3 class="text-xl font-semibold text-gray-900 dark:text-white">
+          Reportes Predim
+        </h3>
+        <button
+          type="button"
+          class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
+          data-modal-hide="static-modal"
+        >
+          <svg
+            class="w-3 h-3"
+            aria-hidden="true"
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 14 14"
+          >
+            <path
+              stroke="currentColor"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6"
+            />
+          </svg>
+          <span class="sr-only">Close modal</span>
+        </button>
+      </div>
+      <!-- TABLA -->
+      <!-- <div class="relative overflow-x-auto">
+  <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+    <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+      <tr>
+        <th scope="col" class="px-6 py-3">Elementos</th>
+        <th scope="col" class="px-6 py-3">Tipo</th>
+        <th scope="col" class="px-6 py-3">Cantidad</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+        <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+          Columna
+        </th>
+        <td class="px-6 py-4">
+          !-- Tabla anidada --
+          <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+            <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+              <tr>
+                <th scope="col" class="px-2 py-1">Subelemento</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                <td class="px-2 py-1">Rectangulo</td>
+              </tr>
+              <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                <td class="px-2 py-1">Cuadro</td>
+              </tr>
+              <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                <td class="px-2 py-1">Circulo</td>
+              </tr>
+              <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                <td class="px-2 py-1">Te</td>
+              </tr>
+              <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                <td class="px-2 py-1">Le</td>
+              </tr>
+            </tbody>
+          </table>
+        </td>
+        <td class="px-6 py-4">b</td>
+      </tr>
+      <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+        <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+          Vigas
+        </th>
+        <td class="px-6 py-4">vigas</td>
+        <td class="px-6 py-4">0</td>
+      </tr>
+      <tr class="bg-white dark:bg-gray-800">
+        <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+          Zapata
+        </th>
+        <td class="px-6 py-4">zapata</td>
+        <td class="px-6 py-4">0</td>
+      </tr>
+      <tr class="bg-white dark:bg-gray-800">
+        <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+          Lozas
+        </th>
+        <td class="px-6 py-4">losas</td>
+        <td class="px-6 py-4">0</td>
+      </tr>
+    </tbody>
+  </table>
+</div> -->
+
+      <div class="relative overflow-x-auto">
+        <table
+          class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400"
+        >
+          <thead
+            class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400"
+          >
+            <tr>
+              <th scope="col" class="px-6 py-3">Elementos</th>
+              <th scope="col" class="px-6 py-3">Tipo</th>
+              <th scope="col" class="px-6 py-3">Cantidad</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+              <th
+                scope="row"
+                class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+              >
+                Columna
+              </th>
+              <td class="px-6 py-4">
+                <!-- Tabla anidada -->
+                <table
+                  class="w-full text-sm text-left text-gray-500 dark:text-gray-400"
+                >
+                  <thead
+                    class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400"
+                  >
+                    <tr>
+                      <th scope="col" class="px-2 py-1">Subelemento</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr
+                      class="bg-white border-b dark:bg-gray-800 dark:border-gray-700"
+                    >
+                      <td class="px-2 py-1">Rectangulo</td>
+                    </tr>
+                    <tr
+                      class="bg-white border-b dark:bg-gray-800 dark:border-gray-700"
+                    >
+                      <td class="px-2 py-1">Cuadro</td>
+                    </tr>
+                    <tr
+                      class="bg-white border-b dark:bg-gray-800 dark:border-gray-700"
+                    >
+                      <td class="px-2 py-1">Circulo</td>
+                    </tr>
+                    <tr
+                      class="bg-white border-b dark:bg-gray-800 dark:border-gray-700"
+                    >
+                      <td class="px-2 py-1">Te</td>
+                    </tr>
+                    <tr
+                      class="bg-white border-b dark:bg-gray-800 dark:border-gray-700"
+                    >
+                      <td class="px-2 py-1">Le</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </td>
+              <td class="px-6 py-4">
+                <!-- Tabla anidada para la columna "Cantidad" -->
+                <table
+                  class="w-full text-sm text-left text-gray-500 dark:text-gray-400"
+                >
+                  <tbody>
+                    <tr
+                      class="bg-white border-b dark:bg-gray-800 dark:border-gray-700"
+                    >
+                      <td class="px-2 py-1"><p id="rectangulo-count">0</p></td>
+                    </tr>
+                    <tr
+                      class="bg-white border-b dark:bg-gray-800 dark:border-gray-700"
+                    >
+                      <td class="px-2 py-1"><p id="cuadro-count">0</p></td>
+                    </tr>
+                    <tr
+                      class="bg-white border-b dark:bg-gray-800 dark:border-gray-700"
+                    >
+                      <td class="px-2 py-1"><p id="circulo-count">0</p></td>
+                    </tr>
+                    <tr
+                      class="bg-white border-b dark:bg-gray-800 dark:border-gray-700"
+                    >
+                      <td class="px-2 py-1"><p id="te-count">0</p></td>
+                    </tr>
+                    <tr
+                      class="bg-white border-b dark:bg-gray-800 dark:border-gray-700"
+                    >
+                      <td class="px-2 py-1"><p id="le-count">0</p></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </td>
+            </tr>
+            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+              <th
+                scope="row"
+                class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+              >
+                Vigas
+              </th>
+              <td class="px-6 py-4">vigas</td>
+              <td class="px-6 py-4"><p id="vigas-count">0</p></td>
+            </tr>
+            <tr class="bg-white dark:bg-gray-800">
+              <th
+                scope="row"
+                class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+              >
+                Zapata
+              </th>
+              <td class="px-6 py-4">zapata</td>
+              <td class="px-6 py-4"><p id="zapata-count">0</p></td>
+            </tr>
+            <tr class="bg-white dark:bg-gray-800">
+              <th
+                scope="row"
+                class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
+              >
+                Lozas
+              </th>
+              <td class="px-6 py-4">losas</td>
+              <td class="px-6 py-4"><p id="losas-count">0</p></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- /// -->
+      <div
+        class="flex items-center p-4 md:p-5 border-t border-gray-200 rounded-b dark:border-gray-600"
+      >
+        <button
+          data-modal-hide="static-modal"
+          type="button"
+          class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+        >
+          Guardar
+        </button>
+        <button
+          data-modal-hide="static-modal"
+          type="button"
+          class="py-2.5 px-5 ms-3 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
+        >
+          Cerrar
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.10.377/pdf.min.js"></script>
-<script src="https://unpkg.com/@themesberg/flowbite@1.2.0/dist/flowbite.bundle.js"></script>
+<!-- <script src="https://unpkg.com/@themesberg/flowbite@1.2.0/dist/flowbite.bundle.js"></script> -->
+
+<script src="https://cdn.jsdelivr.net/npm/flowbite@2.5.1/dist/flowbite.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.10.377/pdf.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.10.377/pdf.worker.min.js"></script>
 <script src="{{ asset('js/adm_predim_view.js') }}"></script>
 <link href="./output.css" rel="stylesheet" />
 <script src="Predim.js"></script>

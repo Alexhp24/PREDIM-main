@@ -2,66 +2,13 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Visualizador de PDF</title>
-    <style>
-        body {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-            background-color: #f0f0f0;
-        }
-        canvas {
-            border: 1px solid #000;
-        }
-    </style>
+    <title>Visor de PDF</title>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.10.377/pdf.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.10.377/pdf.worker.min.js"></script>
 </head>
 <body>
     <canvas id="pdf-canvas"></canvas>
-
-    <!-- Cargar PDF.js -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.1.81/pdf.min.js"></script>
-    
-    <script>
-        // Base64 del PDF (esto es solo un ejemplo)
-        const pdfBase64 = "";
-
-        // Decodificar base64 en un Uint8Array
-        const pdfData = new Uint8Array(atob(pdfBase64).split('').map(char => char.charCodeAt(0)));
-
-        // Cargar el PDF en el canvas usando PDF.js
-        const loadingTask = pdfjsLib.getDocument({ data: pdfData });
-
-        loadingTask.promise.then(pdf => {
-            console.log('PDF cargado');
-
-            // Elegir la primera página
-            pdf.getPage(1).then(page => {
-                console.log('Página cargada');
-
-                const scale = 1.5;
-                const viewport = page.getViewport({ scale: scale });
-
-                // Prepara el canvas usando las dimensiones de la página
-                const canvas = document.getElementById('pdf-canvas');
-                const context = canvas.getContext('2d');
-                canvas.height = viewport.height;
-                canvas.width = viewport.width;
-
-                // Renderizar la página en el canvas
-                const renderContext = {
-                    canvasContext: context,
-                    viewport: viewport
-                };
-                page.render(renderContext).promise.then(() => {
-                    console.log('Página renderizada');
-                });
-            });
-        }).catch(error => {
-            console.error('Error al cargar el PDF:', error);
-        });
-    </script>
+    <script src="pdf_base64.js"></script>
 </body>
 </html>
