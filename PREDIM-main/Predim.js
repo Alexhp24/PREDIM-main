@@ -369,7 +369,7 @@ document.addEventListener("DOMContentLoaded", function () {
       this.rectCount++; // Incrementar el contador al finalizar el dibujo
 
       const countElement = document.getElementById("rectangulo-count");
-      countElement.textContent =  this.rectCount;
+      countElement.textContent = this.rectCount;
 
       // console.log(`Rectángulos dibujados: ${this.rectCount}`);
     }
@@ -433,7 +433,7 @@ document.addEventListener("DOMContentLoaded", function () {
       this.rectCount++; // Incrementar el contador al finalizar el dibujo
 
       const countElement = document.getElementById("cuadro-count");
-      countElement.textContent =  this.rectCount;
+      countElement.textContent = this.rectCount;
 
       // console.log(`Cuadros dibujados: ${this.rectCount}`);
     }
@@ -498,7 +498,7 @@ document.addEventListener("DOMContentLoaded", function () {
     drawingFinished() {
       this.rectCount++;
       const countElement = document.getElementById("circulo-count");
-      countElement.textContent =  this.rectCount;
+      countElement.textContent = this.rectCount;
 
       // console.log(`Circulo : ${this.rectCount}`);
     }
@@ -554,7 +554,7 @@ document.addEventListener("DOMContentLoaded", function () {
     drawingFinished() {
       this.rectCount++;
       const countElement = document.getElementById("te-count");
-      countElement.textContent =  this.rectCount;
+      countElement.textContent = this.rectCount;
       // console.log(`Te ${this.rectCount}`);
     }
   }
@@ -608,13 +608,13 @@ document.addEventListener("DOMContentLoaded", function () {
     drawingFinished() {
       this.rectCount++;
       const countElement = document.getElementById("le-count");
-      countElement.textContent =  this.rectCount;
+      countElement.textContent = this.rectCount;
       // console.log(`Te ${this.rectCount}`);
     }
   }
   //Secciona de vigas (class cuadrado) Clase CuadradoVigasTool y operación:::::::::::::::::::::
   class CuadradoVigasTool extends Tool {
-     constructor(ctx, fillColor) {
+    constructor(ctx, fillColor) {
       super(ctx, fillColor);
       this.rectCount = 0;
     }
@@ -669,7 +669,7 @@ document.addEventListener("DOMContentLoaded", function () {
     drawingFinished() {
       this.rectCount++;
       const countElement = document.getElementById("vigas-count");
-      countElement.textContent =  this.rectCount;
+      countElement.textContent = this.rectCount;
       // console.log(`Te ${this.rectCount}`);
     }
   }
@@ -731,7 +731,7 @@ document.addEventListener("DOMContentLoaded", function () {
     drawingFinished() {
       this.rectCount++;
       const countElement = document.getElementById("zapata-count");
-      countElement.textContent =  this.rectCount;
+      countElement.textContent = this.rectCount;
       // console.log(`Te ${this.rectCount}`);
     }
   }
@@ -777,9 +777,7 @@ document.addEventListener("DOMContentLoaded", function () {
       // console.log(square.height);
       // console.log(square.width);
       // console.log(LusLosas);
-
       const AreaCuadradoLosas = `B = 30 cm`;
-
       const altura = `H ${(LusLosas / 25).toFixed(2)}`;
 
       const textY = square.y + square.height / 2;
@@ -794,7 +792,7 @@ document.addEventListener("DOMContentLoaded", function () {
     drawingFinished() {
       this.rectCount++;
       const countElement = document.getElementById("losas-count");
-      countElement.textContent =  this.rectCount;
+      countElement.textContent = this.rectCount;
       // console.log(`Te ${this.rectCount}`);
     }
   }
@@ -842,7 +840,6 @@ document.addEventListener("DOMContentLoaded", function () {
       tool.draw(simulatedEvent);
     });
   }
-
   // Función para manejar el dibujo en el canvas
   function draw(e) {
     if (!isDrawing) return;
@@ -872,15 +869,93 @@ document.addEventListener("DOMContentLoaded", function () {
       selectedTool = e.currentTarget.getAttribute("data-tool");
     });
   });
-
-  // colorPicker.addEventListener("change", () => {
-  //   // passing picked color value from color picker to last color btn background
-  //   colorPicker.parentElement.style.background = colorPicker.value;
-  //   colorPicker.parentElement.click();
-  // });
-
-  // Slecciona,os el color
-  // colorPicker.addEventListener("change", (e) => {
-  //     selectedColor = e.target.value;
-  // });
 });
+
+async function generarPDF() {
+  // Selecciona el elemento HTML que deseas capturar
+  const elemento = document.getElementById("tablareportes");
+
+  // Captura el elemento como una imagen usando html2canvas
+  const canvas = await html2canvas(elemento);
+  const imgData = canvas.toDataURL("image/png");
+
+  // Crea una instancia de jsPDF
+  const pdf = new jspdf.jsPDF();
+
+  // Medidas del documento PDF
+  const pdfWidth = pdf.internal.pageSize.getWidth();
+  const pdfHeight = pdf.internal.pageSize.getHeight();
+
+  // Imagen del encabezado (reemplaza con tu imagen en Base64 o una URL si es posible)
+  const imgEncabezado = "img/rizabalasociados.png"; // Reemplaza con la imagen en Base64
+
+  // Añadir la imagen del encabezado en la parte izquierda
+  const encabezadoHeight = 25; // Altura del encabezado
+  const encabezadoWidth = 70; // Anchura del encabezado
+  const xEncabezado = 10; // Margen izquierdo
+  pdf.addImage(
+    imgEncabezado,
+    "PNG",
+    xEncabezado,
+    0,
+    encabezadoWidth,
+    encabezadoHeight
+  );
+
+  // Añadir textos en el encabezado derecho
+  const texto1 = "Direccion: jr. bolivar";
+  const texto2 = "Telefono: 963258741";
+  const texto3 = "Correo: Rizabal@gmail.com";
+  const texto4 = "Fecha: 16/08/2024";
+
+  pdf.setFontSize(10);
+  pdf.text(texto1, pdfWidth - 60, 10); // Ajusta 60 para margen derecho
+  pdf.text(texto2, pdfWidth - 60, 15);
+  pdf.text(texto3, pdfWidth - 60, 20);
+  pdf.text(texto4, pdfWidth - 60, 25);
+
+  // Añadir título centrado debajo del encabezado y antes de la tabla
+  const titulo = "Reportes PREDIM";
+  pdf.setFontSize(16);
+  const yPosTitulo = encabezadoHeight + 20; // Posición del título debajo del encabezado
+  pdf.text(titulo, pdfWidth / 2, yPosTitulo, { align: "center" });
+
+  // Obtener proporciones de la imagen del contenido HTML
+  const imgProps = pdf.getImageProperties(imgData);
+  const imgWidth = imgProps.width;
+  const imgHeight = imgProps.height;
+
+  // Escalado proporcional
+  const ratio = Math.min(
+    pdfWidth / imgWidth,
+    (pdfHeight - yPosTitulo - 30) / imgHeight
+  ); // 30 para el margen inferior
+
+  const scaledWidth = imgWidth * ratio;
+  const scaledHeight = imgHeight * ratio;
+
+  // Calcular la posición para centrar la imagen y situarla debajo del título
+  const xOffset = (pdfWidth - scaledWidth) / 2;
+  const yOffset = yPosTitulo + 25; // Justo debajo del título
+
+  // Añadir la imagen escalada y centrada
+  pdf.addImage(imgData, "PNG", xOffset, yOffset, scaledWidth, scaledHeight);
+  
+  // Añadir pie de página
+  const piepagina1 = "Diseñado: Hyperiumtch";
+  const piepagina2 = "Telefono: 987456321";
+
+  pdf.setFontSize(10);
+  // Pie de página en la parte inferior derecha
+  pdf.text(piepagina1, pdfWidth - 20, pdfHeight - 15, { align: "right" });
+  pdf.text(piepagina2, pdfWidth - 20, pdfHeight - 10, { align: "right" });
+// Ajusta 10 para margen inferior y derecho
+  
+  // Añadir número de página centrado
+  pdf.setFontSize(10);
+  const pageNumber = `01`;
+  pdf.text(pageNumber, pdfWidth / 2, pdfHeight - 10, { align: "center" });
+
+  // Guarda el PDF con un nombre especificado
+  pdf.save("rizabal.pdf");
+}

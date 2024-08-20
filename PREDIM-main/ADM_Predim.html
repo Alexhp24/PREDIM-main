@@ -397,78 +397,10 @@
           <span class="sr-only">Close modal</span>
         </button>
       </div>
-      <!-- TABLA -->
-      <!-- <div class="relative overflow-x-auto">
-  <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-    <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-      <tr>
-        <th scope="col" class="px-6 py-3">Elementos</th>
-        <th scope="col" class="px-6 py-3">Tipo</th>
-        <th scope="col" class="px-6 py-3">Cantidad</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-        <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-          Columna
-        </th>
-        <td class="px-6 py-4">
-          !-- Tabla anidada --
-          <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-            <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-              <tr>
-                <th scope="col" class="px-2 py-1">Subelemento</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                <td class="px-2 py-1">Rectangulo</td>
-              </tr>
-              <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                <td class="px-2 py-1">Cuadro</td>
-              </tr>
-              <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                <td class="px-2 py-1">Circulo</td>
-              </tr>
-              <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                <td class="px-2 py-1">Te</td>
-              </tr>
-              <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                <td class="px-2 py-1">Le</td>
-              </tr>
-            </tbody>
-          </table>
-        </td>
-        <td class="px-6 py-4">b</td>
-      </tr>
-      <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-        <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-          Vigas
-        </th>
-        <td class="px-6 py-4">vigas</td>
-        <td class="px-6 py-4">0</td>
-      </tr>
-      <tr class="bg-white dark:bg-gray-800">
-        <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-          Zapata
-        </th>
-        <td class="px-6 py-4">zapata</td>
-        <td class="px-6 py-4">0</td>
-      </tr>
-      <tr class="bg-white dark:bg-gray-800">
-        <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-          Lozas
-        </th>
-        <td class="px-6 py-4">losas</td>
-        <td class="px-6 py-4">0</td>
-      </tr>
-    </tbody>
-  </table>
-</div> -->
-
+      <!-- TABLA-->
       <div class="relative overflow-x-auto">
         <table
-          class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400"
+          class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400" id="tablareportes"
         >
           <thead
             class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400"
@@ -605,8 +537,9 @@
           data-modal-hide="static-modal"
           type="button"
           class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+          onclick="generarPDF()"
         >
-          Guardar
+          Generar PDF
         </button>
         <button
           data-modal-hide="static-modal"
@@ -620,10 +553,16 @@
   </div>
 </div>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.14/jspdf.plugin.autotable.min.js"></script>
+
+
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.10.377/pdf.min.js"></script>
 <!-- <script src="https://unpkg.com/@themesberg/flowbite@1.2.0/dist/flowbite.bundle.js"></script> -->
-
 <script src="https://cdn.jsdelivr.net/npm/flowbite@2.5.1/dist/flowbite.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.10.377/pdf.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.10.377/pdf.worker.min.js"></script>
