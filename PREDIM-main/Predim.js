@@ -24,12 +24,21 @@ document.addEventListener("DOMContentLoaded", function () {
     brushWidth = event.target.value;
     console.log(`Brush width set to: ${brushWidth}`);
   });
+
+  //RANGO DE COLORES
+  // let color_linea = "#00BFFF";
+  // document.getElementById("").addEventListener("input", (event) => {
+  //   brushWidth = event.target.value;
+  //   console.log(`Brush width set to: ${brushWidth}`);
+  // });
+  
   //TIPO DE COLOR
   let selectedColor = "#4A98F7";
   document.getElementById("color_linea").addEventListener("input", (event) => {
     selectedColor = event.target.value;
     console.log(`color width set to: ${selectedColor}`);
   });
+  
   const uploadPDFInput = document.getElementById("upload-pdf");
   let prevMouseX,
     prevMouseY,
@@ -857,7 +866,6 @@ document.addEventListener("DOMContentLoaded", function () {
   canvas.addEventListener("mouseup", (e) => {
     tools[selectedTool].stopDrawing(e);
   });
-
   canvas.addEventListener("mousemove", draw);
   canvas.addEventListener("mouseleave", () => {
     isDrawing = false;
