@@ -1,59 +1,46 @@
-class RectangleTool extends Tool {
-  constructor() {
-    super();
-    this.rectCount = 0; // Variable para contar los rectángulos dibujados
-  }
+const canvas = document.getElementById('mi-canvas');
+const ctx = canvas.getContext('2d');
 
-  draw(e) {
-    if (!isDrawing) return;
-    ctx.putImageData(snapshot, 0, 0);
-    const shape = {
-      x: prevMouseX,
-      y: prevMouseY,
-      width: e.offsetX - prevMouseX,
-      height: e.offsetY - prevMouseY,
-      color: selectedColor,
-      brushWidth: brushWidth,
-      fill: this.fillColor.checked,
-    };
-    this.drawRect(shape);
-    this.rectCount++; // Incrementa el contador cada vez que se dibuja un rectángulo
-    console.log(`Rectángulos dibujados: ${this.rectCount}`);
-  }
+const boton = document.getElementById('crear-forma');
 
-  drawRect(rect) {
-    ctx.beginPath();
-    ctx.rect(rect.x, rect.y, rect.width, rect.height);
-    ctx.lineWidth = rect.brushWidth;
-    ctx.strokeStyle = rect.color;
-    ctx.stroke();
-    if (rect.fill) {
-      ctx.fillStyle = rect.color;
-      ctx.fill();
+const select = document.getElementById('opciones');
+
+let formaActiva = false;
+let x = 0;
+let y = 0;
+
+let formaSeleccionada = '';
+
+boton.addEventListener('click', () => {
+  
+  formaActiva = true;
+  formaSeleccionada = select.value;
+});
+
+canvas.addEventListener('mousemove', (e) => {
+  if (formaActiva) {
+    x = e.offsetX;
+    y = e.offsetY;
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.fillStyle = 'rgba(255, 0, 0, 0.5)';
+    ctx.fillRect(x, y, 100, 100);
+    ctx.font = '24px Arial';
+    ctx.fillStyle = 'black';
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'top';
+    
+    switch (formaSeleccionada) {
+      case 'a':
+        ctx.fillText('A', x + 50, y + 110);
+        break;
+      case 'b':
+        ctx.fillText('B', x + 50, y + 110);
+        break;
+      case 'c':
+        ctx.fillText('C', x + 50, y + 110);
+        break;
+      default:
+        ctx.fillText('Cuadrado', x + 50, y + 110);
     }
-    const areaCm2 = this.calculateArea(rect);
-    const npisos = npisosInput.value;
-    const pe = parseFloat(npisos) * 1000 * areaCm2;
-    const Ar = pe / (0.45 * Math.sqrt(210, 2));
-    const AreaTributaria = `AT: ${areaCm2.toFixed(2)} m²`;
-    const areaRectangulo = `Ar: ${Ar.toFixed(2)} cm²`;
-    const LadoRec = `LR: ${(Ar / 30).toFixed(2)} cm²`;
-    const textY = rect.y + rect.height / 2;
-    const textX =
-      rect.x + rect.width / 2 - ctx.measureText(AreaTributaria).width / 2;
-
-    this.drawText(rect, AreaTributaria, areaRectangulo, textY);
-    ctx.fillText(LadoRec, textX, textY + 20);
   }
-
-  // Método para calcular el área (solo un ejemplo, debes definirlo según tu lógica)
-  calculateArea(rect) {
-    return rect.width * rect.height / 10000; // Convertir a metros cuadrados si el canvas está en px
-  }
-
-  // Método para dibujar el texto
-  drawText(rect, areaTributaria, areaRectangulo, textY) {
-    ctx.fillText(areaTributaria, rect.x, textY - 20);
-    ctx.fillText(areaRectangulo, rect.x, textY);
-  }
-}
+});

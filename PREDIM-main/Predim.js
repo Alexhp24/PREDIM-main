@@ -44,7 +44,7 @@ document.addEventListener("DOMContentLoaded", function () {
     prevMouseY,
     isDrawing = false,
     snapshot;
-  let selectedTool = "rectangle";
+  let selectedTool = "";
   //   // brushWidth = 5,
   //   // selectedColor = "#000";
   let fillColor = { checked: false };
