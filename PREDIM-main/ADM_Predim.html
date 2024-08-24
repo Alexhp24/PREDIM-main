@@ -14,7 +14,6 @@
   rel="stylesheet"
   href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
 />
-
 <style>
   .option {
     cursor: pointer;
@@ -83,7 +82,7 @@
                 Columnas
               </button>
             </li>
-            <li class="mr-2" role="presentation">
+            <!-- <li class="mr-2" role="presentation">
               <button
                 class="inline-block text-gray-500 hover:text-gray-600 hover:border-gray-300 rounded-t-lg py-4 px-4 text-sm font-medium text-center border-transparent border-b-2 dark:text-gray-400 dark:hover:text-gray-300"
                 id="settings-tab"
@@ -95,8 +94,8 @@
               >
                 Vigas
               </button>
-            </li>
-            <li role="presentation">
+            </li> -->
+            <!-- <li role="presentation">
               <button
                 class="inline-block text-gray-500 hover:text-gray-600 hover:border-gray-300 rounded-t-lg py-4 px-4 text-sm font-medium text-center border-transparent border-b-2 dark:text-gray-400 dark:hover:text-gray-300"
                 id="contacts-tab"
@@ -108,8 +107,8 @@
               >
                 Zapata
               </button>
-            </li>
-            <li role="presentation">
+            </li> -->
+            <!-- <li role="presentation">
               <button
                 class="inline-block text-gray-500 hover:text-gray-600 hover:border-gray-300 rounded-t-lg py-4 px-4 text-sm font-medium text-center border-transparent border-b-2 dark:text-gray-400 dark:hover:text-gray-300"
                 id="losas-tab"
@@ -121,7 +120,7 @@
               >
                 Lozas
               </button>
-            </li>
+            </li> -->
           </ul>
         </div>
         <div id="myTabContent">
@@ -280,92 +279,235 @@
             </div> -->
           <!-- </div> -->
           <div
-            class="bg-gray-50 p-4 rounded-lg dark:bg-gray-800 hidden"
+            class="bg-gray-50 p-4 rounded-lg dark:bg-gray-800 flex hidden"
             id="dashboard"
             role="tabpanel"
             aria-labelledby="dashboard-tab"
-          >
+           >
+            <!-- CUADRO DE COLUMNAS  -->
             <div class="col-lg-3 col-md-3 col-sm-6 col-12">
               <!-- Contenedor para los botones y el input de pisos -->
               <div
                 class="card d-flex flex-row align-items-center p-2 border border-gray-300 rounded-md"
-                style="width: 250px"
+                style="width: 200px"
               >
                 <!-- Botones en una fila -->
                 <div class="d-flex justify-content-around w-50">
-                  <!-- rectangulo -->
+                  <div>
+                    <!-- rectangulo -->
+                    <button
+                      class="btn btn-sm tool mx-1"
+                      data-tool="rectangle"
+                      title="Rectángulo"
+                    >
+                      <i class="ri-rectangle-line"></i>
+                    </button>
+                    <!-- cuadrado -->
+                    <button
+                      class="btn btn-sm tool mx-1"
+                      data-tool="cuadrado"
+                      title="Cuadrado"
+                    >
+                      <i class="ri-square-line"></i>
+                    </button>
+                    <!-- circulo -->
+                    <button
+                      class="btn btn-sm tool mx-1"
+                      data-tool="circulo"
+                      title="Círculo"
+                    >
+                      <i class="ri-circle-line"></i>
+                    </button>
+                    <!-- tipo TEE -->
+                    <button
+                      class="btn btn-sm tool mx-1"
+                      data-tool="te"
+                      title="T"
+                    >
+                      <i class="ri-t-box-line"></i>
+                    </button>
+                    <!-- tipo L -->
+                    <button
+                      class="btn btn-sm tool mx-1"
+                      data-tool="ele"
+                      title="L"
+                    >
+                      <i class="ri-ruler-2-line"></i>
+                    </button>
+                  </div>
+                </div>
+                <!-- Input de cantidad de pisos -->
+                <label for="npisos" class="col-form-label mb-1"
+                  >Numero de pisos</label
+                >
+                <input
+                  type="number"
+                  id="npisos"
+                  class="form-control"
+                  style="width: 50px; height: 25px"
+                  value="1"
+                  min="1"
+                />
+              </div>
+            </div>
+            <!-- CUADRO DE VIGAS -->
+            <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+              <div
+                class="card d-flex flex-row align-items-center p-2 border border-gray-300 rounded-md"
+                style="width: 150px; height: 68px"
+              >
+                <div class="d-flex justify-content-around w-20">
                   <button
-                    class="btn btn-sm tool mx-1"
-                    data-tool="rectangle"
-                    title="Rectángulo"
+                    class="btn btn-sm tool"
+                    data-tool="cuadradovigas"
+                    title="Vigas"
                   >
-                    <i class="ri-rectangle-line"></i>
+                    <i class="ri-t-box-line"></i>
                   </button>
-                  <!-- cuadrado -->
+                </div>
+              </div>
+            </div>
+            <!-- CUADRO DE ZAPATA -->
+            <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+              <div
+                class="card d-flex flex-row align-items-center p-2 border border-gray-300 rounded-md"
+                style="width: 220px; height: 68"
+              >
+                <div class="flex justify-around items-center w-1/2">
                   <button
-                    class="btn btn-sm tool mx-1"
-                    data-tool="cuadrado"
-                    title="Cuadrado"
+                    class="btn btn-sm tool"
+                    data-tool="cuadradozapata"
+                    title="CuadradoZapata"
                   >
                     <i class="ri-square-line"></i>
                   </button>
-                  <!-- circulo -->
-                  <button
-                    class="btn btn-sm tool mx-1"
-                    data-tool="circulo"
-                    title="Círculo"
-                  >
-                    <i class="ri-circle-line"></i>
-                  </button>
-                  <!-- tipo TEE -->
-                  <button class="btn btn-sm tool mx-1" data-tool="te" title="T">
-                    <i class="ri-t-box-line"></i>
-                  </button>
-                  <!-- tipo L -->
-                  <button
-                    class="btn btn-sm tool mx-1"
-                    data-tool="ele"
-                    title="L"
-                  >
-                    <i class="ri-ruler-2-line"></i>
-                  </button>
-                </div>
-                <!-- Input de cantidad de pisos -->
-                <div class="d-flex flex-column align-items-center ml-2">
-                  <label for="npisos" class="col-form-label mb-1"
-                    >Cantidad Pisos</label
-                  >
-                  <input
-                    type="number"
-                    id="npisos"
-                    class="form-control w-100"
-                    value="1"
-                    min="1"
-                  />
-                </div>
-              </div>
-            </div>
-            
-            <div
-              class="card d-flex flex-row align-items-center p-2 border border-gray-300 rounded-md"
-              style="width: 250px"
-            >
-              <div class="d-flex justify-content-around w-50">
-                <div>
-                  <button
-                    class="btn btn-sm tool"
-                    data-tool="cuadradovigas"
-                    title="Vigas"
-                  >
-                    <i class="ri-t-box-line"></i>
-                  </button>
-                </div>
-              </div>
-            </div>
 
-            <div>
+                  <div class="flex flex-col items-center mx-4">
+                    <label for="Zpisos" class="text-center"> N° pisos </label>
+                    <input
+                      type="number"
+                      id="Zpisos"
+                      class="form-control mt-1"
+                      style="width: 60px; height: 25px"
+                      value="0"
+                      min="0"
+                    />
+                  </div>
+                  <div class="flex flex-col items-center mx-4">
+                    <label for="Zsuelos" class="text-center"> C° Suelo </label>
+                    <input
+                      type="number"
+                      id="Zsuelos"
+                      class="form-control mt-1"
+                      style="width: 60px; height: 25px"
+                      value="0"
+                      min="0"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- CUADRO DE LOSAS  -->
+            <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+              <div
+                class="card d-flex flex-row align-items-center p-2 border border-gray-300 rounded-md"
+                style="width: 130px; height: 68"
+              >
+                <div class="text-center justify-content-around w-50">
+                  <button
+                    class="btn btn-sm tool"
+                    data-tool="cuadradolosas"
+                    title="CuadradoLosas"
+                  >
+                    <i class="ri-ruler-2-fill"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+            <!-- <!-TEXTO -- -->
+            <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+              <div
+                class="card d-flex flex-row align-items-center p-2 border border-gray-300 rounded-md"
+                style="width: 150px; height: 68"
+              >
+                <div class="text-center d-flex justify-content-around w-50">
+                  <!-- LAPIZ -->
+                  <button>
+                    <i class="fa-solid fa-pencil" style="color: #f1bf09"></i>
+                  </button>
+                  <!-- borrador -->
+                  <button>
+                    <i class="ri-eraser-line" style="color: #e94742"></i>
+                  </button>
+                  <!-- texto -->
+                  <button>
+                    <i class="ri-font-family"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+            <!-- PAINT DE COLOR  -->
+            <div class="col-lg-3 col-md-3 col-sm-6 col-12">
+              <div
+                class="card d-flex flex-row align-items-center p-2 border border-gray-300 rounded-md"
+                style="width: 350px; height: 68px"
+              >
+                <div class="flex justify-around items-center w-3/2">
+                  <div>
+                    <div class="flex flex-col items-center mx-4">
+                      <label
+                        for="color_linea"
+                        class="block mb-1 text-center font-medium text-gray-900 dark:text-white"
+                        >Color</label
+                      >
+                      <!-- color general-->
+                      <input id="color_linea" type="color" value="#23D738" />
+                    </div>
+                  </div>
+                  <div>
+                    <a class="text-blue-500" id="#0000ff" href="#" type="button"
+                      ><i class="ri-square-fill"></i
+                    ></a>
+
+                    <a class="text-red-500" href="#" type="button"
+                      ><i class="ri-square-fill"></i
+                    ></a>
+
+                    <a class="text-green-500" href="#" type="button"
+                      ><i class="ri-square-fill"></i
+                    ></a>
+
+                    <a class="text-yellow-500" href="#" type="button"
+                      ><i class="ri-square-fill"></i
+                    ></a>
+                    <a class="text-Purple-500" href="#" type="button"
+                      ><i class="ri-square-fill"></i
+                    ></a>
+                  </div>
+                  <div>
+                    <div>
+                      <label
+                        for="range_linea"
+                        class="block mb-1 text-center font-medium text-gray-900 dark:text-white"
+                        >Grosor</label
+                      >
+                      <input
+                        id="range_linea"
+                        type="range"
+                        value="2"
+                        min="0"
+                        max="10"
+                        class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer dark:bg-gray-700"
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+           <!-- <div>
               <div>
-                <!-- VIGAS  -->
+                <-- VIGAS  --
                 <div>
                   <button
                     class="btn btn-sm tool"
@@ -375,9 +517,9 @@
                     <i class="ri-t-box-line"></i>
                   </button>
                 </div>
-                <!-- Zapata -->
+                <-- Zapata --
                 <div class="flex items-center">
-                  <!-- Contenedor flex para alinear elementos -->
+                  <-- Contenedor flex para alinear elementos --
                   <button
                     class="btn btn-sm tool"
                     data-tool="cuadradozapata"
@@ -386,7 +528,7 @@
                     <i class="ri-square-line"></i>
                   </button>
                   <div class="ml-12">
-                    <!-- Incremento mayor de margen izquierdo -->
+                    <-- Incremento mayor de margen izquierdo --
                     <div>
                       <label
                         for="Zpisos"
@@ -406,7 +548,7 @@
                     </div>
                   </div>
                   <div class="ml-12">
-                    <!-- Incremento mayor de margen izquierdo de suelos  -->
+                    <-- Incremento mayor de margen izquierdo de suelos  --
                     <div>
                       <label
                         for="Zpisos"
@@ -424,7 +566,7 @@
                       />
                     </div>
                   </div>
-                  <!-- LOSAS -->
+                  <-- LOSAS --
                   <div>
                     <button
                       class="btn btn-sm tool"
@@ -437,9 +579,9 @@
                 </div>
               </div>
 
-              <!-- Contenedor para el color y el grosor -->
+              <-- Contenedor para el color y el grosor --
               <div class="flex space-x-2">
-                <!-- LAPIZ Y BORRADOR -->
+                <-- LAPIZ Y BORRADOR --
                 <div>
                   <button>
                     <i class="fa-solid fa-pencil" style="color: #f1bf09"></i>
@@ -497,11 +639,9 @@
                   />
                 </div>
               </div>
-            </div>
-          </div>
-
-          <!----->
-          <div
+            </div> -->
+            <!-- </div> -->
+          <!-- <div
             class="bg-gray-50 p-4 rounded-lg dark:bg-gray-800 hidden"
             id="settings"
             role="tabpanel"
@@ -518,15 +658,16 @@
                 </button>
               </div>
             </div>
-          </div>
-          <div
+          </div> -->
+
+          <!-- <div
             class="bg-gray-50 p-4 rounded-lg dark:bg-gray-800 hidden"
             id="contacts"
             role="tabpanel"
             aria-labelledby="contacts-tab"
           >
             <div class="flex items-center">
-              <!-- Contenedor flex para alinear elementos -->
+              
               <button
                 class="btn btn-sm tool"
                 data-tool="cuadradozapata"
@@ -535,7 +676,7 @@
                 <i class="ri-square-line"></i>
               </button>
               <div class="ml-12">
-                <!-- Incremento mayor de margen izquierdo -->
+                
                 <div>
                   <label
                     for="Zpisos"
@@ -554,7 +695,7 @@
                 </div>
               </div>
               <div class="ml-12">
-                <!-- Incremento mayor de margen izquierdo de suelos  -->
+                
                 <div>
                   <label
                     for="Zpisos"
@@ -574,12 +715,13 @@
               </div>
             </div>
           </div>
-          <div
+           -->
+          <!-- <div
             class="bg-gray-50 p-4 rounded-lg dark:bg-gray-800 hidden"
             id="losas"
             role="tabpanel"
             aria-labelledby="losas-tab"
-          >
+           >
             <button>
               <div>
                 <button
@@ -591,14 +733,19 @@
                 </button>
               </div>
             </button>
-          </div>
+          </div> -->
+          <!-- aqui -->
         </div>
         <section class="drawing-board col-md-12">
           <canvas id="canvas" class="border"></canvas>
         </section>
+
       </div>
+
     </div>
+
   </div>
+
 </div>
 
 <!-- Main modal -->
